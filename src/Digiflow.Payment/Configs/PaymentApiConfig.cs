@@ -6,6 +6,12 @@ namespace Digiflow.Payment.Configs;
 public class PaymentApiConfig
 {
 	/// <summary>
+	/// API base url<br/>
+	/// 預設為測試環境
+	/// </summary>
+	public string BaseUrl { get; set; } = "https://ta.digiflowtech.com";
+
+	/// <summary>
 	/// 商店編號
 	/// </summary>
 	public string? MerchantId { get; set; }
