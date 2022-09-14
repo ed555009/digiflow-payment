@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Digiflow.Payment.Models.Requests;
 
-public class BaseRequestModel
+public abstract class BaseRequestModel
 {
 	/// <summary>
 	/// API版本<br/>

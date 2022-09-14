@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Digiflow.Payment.Models.Responses;
 
-public class BaseResponseModel
+public abstract class BaseResponseModel
 {
 	/// <summary>
 	/// 交易結果<br/>
