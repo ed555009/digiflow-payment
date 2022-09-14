@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -12,5 +13,5 @@ public enum Currency
 	/// <summary>
 	/// 新台幣
 	/// </summary>
-	TWD = 1
+	[Description("TWD")] TWD = 1
 }
