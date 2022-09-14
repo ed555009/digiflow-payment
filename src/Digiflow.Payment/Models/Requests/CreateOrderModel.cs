@@ -3,27 +3,8 @@ using Digiflow.Payment.Enums;
 
 namespace Digiflow.Payment.Models.Requests;
 
-public class CreateOrderModel
+public class CreateOrderModel : BaseRequestModel
 {
-	/// <summary>
-	/// API版本<br/>
-	/// 固定 1.0
-	/// </summary>
-	[MaxLength(3)]
-	public static string Version => "1.0";
-
-	/// <summary>
-	/// 商店編號
-	/// </summary>
-	[MaxLength(15)]
-	public string? MerchantId { get; set; }
-
-	/// <summary>
-	/// 終端編號
-	/// </summary>
-	[MaxLength(8)]
-	public string? TerminalId { get; set; }
-
 	/// <summary>
 	/// 商店訂單編號
 	/// </summary>
@@ -39,7 +20,7 @@ public class CreateOrderModel
 	/// <summary>
 	/// 訂單金額
 	/// </summary>
-	public int? Amount { get; set; }
+	public decimal? Amount { get; set; }
 
 	/// <summary>
 	/// 商品名稱（訂單描述）
@@ -55,7 +36,7 @@ public class CreateOrderModel
 	/// <summary>
 	/// 付款方式
 	/// </summary>
-	public string? PaymentType { get; set; } = null;
+	public PaymentType PaymentType { get; set; } = PaymentType.CreditCard;
 
 	/// <summary>
 	/// 消費者在電商平臺的會員ID<br/>
@@ -75,11 +56,4 @@ public class CreateOrderModel
 	/// </summary>
 	[MaxLength(256)]
 	public string? ExtraData { get; set; } = null;
-
-	/// <summary>
-	/// 時間戳，自 1970/01/01 至當前時間的毫秒數，同 Java 的 System.currentTimeMillis()<br/>
-	/// 與數位鎏系統時鐘差異超過 180 秒的交易將會被拒絕
-	/// </summary>
-	public static string Timestamp =>
-		((long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds).ToString();
 }
