@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
 using Digiflow.Payment.Configs;
 using Digiflow.Payment.Extensions;
 using Digiflow.Payment.Interfaces;
@@ -14,15 +12,14 @@ public class PaymentService : IPaymentService
 {
 	private readonly ILogger<PaymentService> _logger;
 	private readonly PaymentApiConfig _paymentApiConfig;
+	private readonly ISignService _signService;
 	private readonly IPaymentApi _paymentApi;
 
-	public PaymentService(ILogger<PaymentService> logger, PaymentApiConfig paymentApiConfig)
+	public PaymentService(ILogger<PaymentService> logger, PaymentApiConfig paymentApiConfig, ISignService signService)
 	{
 		_logger = logger;
 		_paymentApiConfig = paymentApiConfig;
-
-		ValidateConfig();
-
+		_signService = signService;
 		_paymentApi = RestService.For<IPaymentApi>($"{paymentApiConfig.BaseUrl}/universal");
 	}
 
@@ -30,9 +27,6 @@ public class PaymentService : IPaymentService
 	{
 		var param = new CreateOrderParams
 		{
-			// version = _paymentApiConfig.Version,
-			// merchant_id = _paymentApiConfig.MerchantId,
-			// terminal_id = _paymentApiConfig.TerminalId,
 			order_id = data.OrderId,
 			currency = data.Currency.ToDescription(),
 			order_amount = ((int)((data.Amount ?? 0) * 100m)).ToString(),
@@ -45,26 +39,8 @@ public class PaymentService : IPaymentService
 			timestamp = data.Timestamp
 		};
 
-		var signString = GetSignString(param);
-		using var sha256 = SHA256.Create();
-		param.sign = Convert.ToBase64String(sha256.ComputeHash(new UTF8Encoding().GetBytes(signString)));
+		param.sign = _signService.Sign(param);
 
 		return await _paymentApi.CreateOrderAsync(param);
-	}
-
-	void ValidateConfig()
-	{
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.MerchantId, nameof(_paymentApiConfig.MerchantId));
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.TerminalId, nameof(_paymentApiConfig.TerminalId));
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.SignKey, nameof(_paymentApiConfig.SignKey));
-	}
-
-	string GetSignString(IBaseQueryParam param)
-	{
-		param.version = _paymentApiConfig.Version;
-		param.merchant_id = _paymentApiConfig.MerchantId;
-		param.terminal_id = _paymentApiConfig.TerminalId;
-
-		return $"{param.ToOrderedValuesString()}&key={_paymentApiConfig.SignKey}";
 	}
 }
