@@ -11,14 +11,12 @@ namespace Digiflow.Payment.Services;
 public class PaymentService : IPaymentService
 {
 	private readonly ILogger<PaymentService> _logger;
-	private readonly PaymentApiConfig _paymentApiConfig;
 	private readonly ISignService _signService;
 	private readonly IPaymentApi _paymentApi;
 
 	public PaymentService(ILogger<PaymentService> logger, PaymentApiConfig paymentApiConfig, ISignService signService)
 	{
 		_logger = logger;
-		_paymentApiConfig = paymentApiConfig;
 		_signService = signService;
 		_paymentApi = RestService.For<IPaymentApi>($"{paymentApiConfig.BaseUrl}/universal");
 	}
