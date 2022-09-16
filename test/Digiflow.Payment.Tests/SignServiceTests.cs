@@ -28,9 +28,22 @@ public class SignServiceTests : BaseServiceTests
 		// When
 		var sign = _signService.Sign(param);
 
-		TestOutputHelper.WriteLine(sign);
-
 		// Then
 		Assert.Equal("Wve/GBwR/D0xSudNKj6jYIdXYRkijU4N8765/L9ZtIo=", sign);
+
+		TestOutputHelper.WriteLine(sign);
+	}
+
+	[Fact]
+	public void Sign_WithNullConfig_ShouldThrow()
+	{
+		// Given
+
+		// When
+		var ex = Assert.Throws<ArgumentNullException>(() =>
+			new SignService(Mock.Of<ILogger<SignService>>(), new PaymentApiConfig()));
+
+		// Then
+		Assert.NotNull(ex);
 	}
 }
