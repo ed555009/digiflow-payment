@@ -36,9 +36,6 @@ bld/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-# Test Projects
-[Tt]est/
-
 # NUNIT
 *.VisualState.xml
 TestResult.xml
