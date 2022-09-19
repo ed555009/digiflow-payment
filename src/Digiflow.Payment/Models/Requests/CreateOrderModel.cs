@@ -9,7 +9,7 @@ public class CreateOrderModel : BaseRequestModel
 	/// 商店訂單編號
 	/// </summary>
 	[MaxLength(32)]
-	public string? OrderId { get; set; }
+	public string? OrderNo { get; set; }
 
 	/// <summary>
 	/// 交易幣別<br/>

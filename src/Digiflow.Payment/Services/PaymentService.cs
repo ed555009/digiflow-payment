@@ -25,7 +25,7 @@ public class PaymentService : IPaymentService
 	{
 		var param = new CreateOrderParams
 		{
-			order_no = data.OrderId,
+			order_no = data.OrderNo,
 			currency = data.Currency.ToDescription(),
 			order_amount = ((int)((data.Amount ?? 0) * 100m)).ToString(),
 			order_desc = data.Description,
