@@ -8,7 +8,7 @@ using Refit;
 
 namespace Digiflow.Payment.Services;
 
-public class PaymentService : IPaymentService
+public sealed class PaymentService : IPaymentService
 {
 	private readonly ILogger<PaymentService> _logger;
 	private readonly ISignService _signService;
@@ -40,5 +40,18 @@ public class PaymentService : IPaymentService
 		param.sign = _signService.Sign(param);
 
 		return await _paymentApi.CreateOrderAsync(param);
+	}
+
+	public async Task<ApiResponse<QueryOrderModel>> QueryOrderAsync(Models.Requests.QueryOrderModel data)
+	{
+		var param = new QueryOrderParams
+		{
+			order_no = data.OrderNo,
+			timestamp = data.Timestamp
+		};
+
+		param.sign = _signService.Sign(param);
+
+		return await _paymentApi.QueryOrderAsync(param);
 	}
 }
