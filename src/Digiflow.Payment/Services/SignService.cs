@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Digiflow.Payment.Services;
 
-public class SignService : ISignService
+public sealed class SignService : ISignService
 {
 	private readonly ILogger<SignService> _logger;
 	private readonly PaymentApiConfig _paymentApiConfig;
