@@ -6,7 +6,9 @@ namespace Digiflow.Payment.Interfaces;
 public interface IPaymentService
 {
 	/// <summary>
-	/// 訂單登記
+	/// 訂單登記<br/>
+	/// 電商須使用此 API 預先在數位鎏系統登記訂單資訊<br/>
+	/// 成功登記訂單後，數位鎏將會回傳訂單的付款網址，電商須將消費者瀏覽器頁面跳轉至該付款網 址進行付款的操作
 	/// </summary>
 	Task<ApiResponse<CreateOrderModel>> CreateOrderAsync(Models.Requests.CreateOrderModel data);
 
