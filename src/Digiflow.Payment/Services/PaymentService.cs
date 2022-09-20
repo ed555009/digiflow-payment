@@ -21,6 +21,19 @@ public sealed class PaymentService : IPaymentService
 		_paymentApi = RestService.For<IPaymentApi>($"{paymentApiConfig.BaseUrl}/universal");
 	}
 
+	public async Task<ApiResponse<CancelOrderModel>> CancelOrderAsync(Models.Requests.QueryOrderModel data)
+	{
+		var param = new QueryOrderParams
+		{
+			order_no = data.OrderNo,
+			timestamp = data.Timestamp
+		};
+
+		param.sign = _signService.Sign(param);
+
+		return await _paymentApi.CancelOrderAsync(param);
+	}
+
 	public async Task<ApiResponse<CreateOrderModel>> CreateOrderAsync(Models.Requests.CreateOrderModel data)
 	{
 		var param = new CreateOrderParams
