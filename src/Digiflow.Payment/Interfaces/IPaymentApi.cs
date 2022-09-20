@@ -12,9 +12,9 @@ internal interface IPaymentApi
 	[Post("/order")]
 	Task<ApiResponse<CreateOrderModel>> CreateOrderAsync([Query] CreateOrderParams data);
 
-	[Post("query")]
+	[Post("/query")]
 	Task<ApiResponse<QueryOrderModel>> QueryOrderAsync([Query] QueryOrderParams data);
 
-	[Post("cancel")]
+	[Post("/cancel")]
 	Task<ApiResponse<CancelOrderModel>> CancelOrderAsync([Query] QueryOrderParams data);
 }
