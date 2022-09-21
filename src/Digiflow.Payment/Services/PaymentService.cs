@@ -67,4 +67,18 @@ public sealed class PaymentService : IPaymentService
 
 		return await _paymentApi.QueryOrderAsync(param);
 	}
+
+	public async Task<ApiResponse<RefundOrderModel>> RefundOrderAsync(Models.Requests.RefundOrderModel data)
+	{
+		var param = new RefundOrderParams
+		{
+			order_no = data.OrderNo,
+			refund_amount = ((int)((data.Amount ?? 0) * 100m)).ToString(),
+			timestamp = data.Timestamp
+		};
+
+		param.sign = _signService.Sign(param);
+
+		return await _paymentApi.RefundOrderAsync(param);
+	}
 }

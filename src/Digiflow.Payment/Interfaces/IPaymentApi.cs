@@ -17,4 +17,7 @@ internal interface IPaymentApi
 
 	[Post("/cancel")]
 	Task<ApiResponse<CancelOrderModel>> CancelOrderAsync([Query] QueryOrderParams data);
+
+	[Post("/refund")]
+	Task<ApiResponse<RefundOrderModel>> RefundOrderAsync([Query] RefundOrderParams data);
 }
