@@ -20,4 +20,7 @@ internal interface IPaymentApi
 
 	[Post("/refund")]
 	Task<ApiResponse<RefundOrderModel>> RefundOrderAsync([Query] RefundOrderParams data);
+
+	[Post("/capture")]
+	Task<ApiResponse<CaptureOrderModel>> CaptureOrderAsync([Query] CaptureOrderParams data);
 }

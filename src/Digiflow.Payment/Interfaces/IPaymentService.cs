@@ -36,4 +36,15 @@ public interface IPaymentService
 	/// 4. 信用卡分期交易只能全額退款
 	/// </summary>
 	Task<ApiResponse<RefundOrderModel>> RefundOrderAsync(Models.Requests.RefundOrderModel data);
+
+	/// <summary>
+	/// 信用卡請款<br/>
+	/// 商店在消費者取得商品(或服務)後，應使用此交易對數位鎏請款，只有經過請款的訂單數位鎏 才會進行結算<br/>
+	/// 注意：<br/>
+	/// 1. 以信用卡付款的訂單必須在消費者付款後 50 天內進行請款，超過 50 天將不能進行請款。逾期未請款的訂單將會被自動取消<br/>
+	/// 2. 每筆訂單只能執行一次請款作業，請款金額必須等於或小於訂單金額<br/>
+	/// 3. 如商店已申請自動請款，則數位鎏會在付款完成後立即自動進行全額請款作業，商店不需要在發起請款交易<br/>
+	/// 4. 信用卡分期交易只能全額請款
+	/// </summary>
+	Task<ApiResponse<CaptureOrderModel>> CaptureOrderAsync(Models.Requests.CaptureOrderModel data);
 }

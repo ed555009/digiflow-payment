@@ -28,6 +28,15 @@ public sealed class PaymentService : IPaymentService
 			timestamp = data.Timestamp
 		}));
 
+	public async Task<ApiResponse<CaptureOrderModel>> CaptureOrderAsync(Models.Requests.CaptureOrderModel data) =>
+		await _paymentApi.CaptureOrderAsync(SignParam<CaptureOrderParams>(new CaptureOrderParams
+		{
+			order_no = data.OrderNo,
+			currency = data.Currency.ToDescription(),
+			capture_amount = ((int)((data.CaptureAmount ?? 0) * 100m)).ToString(),
+			timestamp = data.Timestamp
+		}));
+
 	public async Task<ApiResponse<CreateOrderModel>> CreateOrderAsync(Models.Requests.CreateOrderModel data) =>
 		await _paymentApi.CreateOrderAsync(SignParam<CreateOrderParams>(new CreateOrderParams
 		{
