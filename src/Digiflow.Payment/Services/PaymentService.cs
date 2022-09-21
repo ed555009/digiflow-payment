@@ -54,7 +54,8 @@ public sealed class PaymentService : IPaymentService
 		await _paymentApi.RefundOrderAsync(SignParam<RefundOrderParams>(new RefundOrderParams
 		{
 			order_no = data.OrderNo,
-			refund_amount = ((int)((data.Amount ?? 0) * 100m)).ToString(),
+			currency = data.Currency.ToDescription(),
+			refund_amount = ((int)((data.RefundAmount ?? 0) * 100m)).ToString(),
 			timestamp = data.Timestamp
 		}));
 

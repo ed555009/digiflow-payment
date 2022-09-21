@@ -13,5 +13,5 @@ public class RefundOrderModel : QueryOrderModel
 	/// <summary>
 	/// 退款金額
 	/// </summary>
-	public decimal? Amount { get; set; }
+	public decimal? RefundAmount { get; set; }
 }
