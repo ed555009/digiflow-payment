@@ -1,8 +1,9 @@
+using Digiflow.Payment.Interfaces;
 using Newtonsoft.Json;
 
 namespace Digiflow.Payment.Models.Responses;
 
-public abstract class BaseResponseModel
+public abstract class BaseResponseModel : IBaseResponseModel
 {
 	/// <summary>
 	/// 交易結果<br/>

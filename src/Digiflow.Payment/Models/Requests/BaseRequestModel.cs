@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Digiflow.Payment.Interfaces;
 
 namespace Digiflow.Payment.Models.Requests;
 
-public abstract class BaseRequestModel
+public abstract class BaseRequestModel : IBaseRequestModel
 {
 	/// <summary>
 	/// API版本<br/>
