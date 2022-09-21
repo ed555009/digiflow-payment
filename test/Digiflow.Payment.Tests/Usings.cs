@@ -1,8 +1,12 @@
+global using System.Net;
 global using Digiflow.Payment.Configs;
+global using Digiflow.Payment.Enums;
 global using Digiflow.Payment.Interfaces;
-global using Digiflow.Payment.Models;
+global using Digiflow.Payment.Models.Requests.Params;
+global using Digiflow.Payment.Models.Responses;
 global using Digiflow.Payment.Services;
 global using Microsoft.Extensions.Logging;
 global using Moq;
+global using Refit;
 global using Xunit;
 global using Xunit.Abstractions;

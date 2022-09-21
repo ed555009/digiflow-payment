@@ -1,5 +1,3 @@
-using Digiflow.Payment.Models.Requests.Params;
-
 namespace Digiflow.Payment.Tests;
 
 public class SignServiceTests : BaseServiceTests
