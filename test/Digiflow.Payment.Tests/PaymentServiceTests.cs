@@ -74,7 +74,7 @@ public class PaymentServiceTests : BaseServiceTests
 	public async Task RefundOrderAsync_ShouldSucceedAsync()
 	{
 		// Given
-		var response = CreateResponse<RefundOrderModel>(HttpStatusCode.Forbidden);
+		var response = CreateResponse<RefundOrderModel>(HttpStatusCode.OK);
 		_paymentApiMock.Setup(x => x.RefundOrderAsync(It.IsAny<RefundOrderParams>())).Returns(response);
 
 		// When
