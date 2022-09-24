@@ -4,14 +4,16 @@ public class PaymentServiceTests : BaseServiceTests
 {
 	private readonly Mock<IPaymentApi> _paymentApiMock;
 	private readonly IPaymentService _paymentService;
+	private readonly SignService _signService;
 
 	public PaymentServiceTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
 	{
+		_signService = new SignService(Mock.Of<ILogger<SignService>>(), PaymentApiConfig);
 		_paymentApiMock = new Mock<IPaymentApi>();
 		_paymentService = new PaymentService(
 			Mock.Of<ILogger<PaymentService>>(),
 			PaymentApiConfig,
-			Mock.Of<ISignService>());
+			_signService);
 	}
 
 	[Fact]
