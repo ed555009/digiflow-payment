@@ -71,7 +71,7 @@ public class PaymentServiceTests : BaseServiceTests
 	}
 
 	[Fact]
-	public async Task RefundOrderAsync_ShouldSucceedAsync()
+	public async Task RefundOrderAsync_ShouldSucceed()
 	{
 		// Given
 		var response = CreateResponse<RefundOrderModel>(HttpStatusCode.OK);
