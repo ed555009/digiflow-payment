@@ -99,19 +99,4 @@ stages:
         custom: 'sonarscanner'
         arguments: 'end /d:sonar.login=$(Sonarqube.Token)'
 
-  # Create tag
-  - job: CreateTag
-    displayName: Create tag
-    dependsOn: TestAndScan
-    condition: in(dependencies.TestAndScan.result, 'Succeeded', 'Skipped')
-    steps:
-
-    # checkout
-    - checkout: self
-      persistCredentials: true
-    - script: |
-        git tag $(Build.Version)
-        git push origin $(Build.Version)
-      workingDirectory: $(Build.SourcesDirectory)
-
 ...

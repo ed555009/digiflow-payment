@@ -42,4 +42,23 @@ stages:
               nuGetFeedType: external
               publishFeedCredentials: Nuget-github
 
+  # Create tag
+  - deployment: CreateTag
+    displayName: Create tag
+    dependsOn: PackAndUpload
+    condition: succeeded()
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          # checkout
+          - checkout: self
+            persistCredentials: true
+
+          - script: |
+              git tag $(Build.Version)
+              git push origin $(Build.Version)
+            workingDirectory: $(Build.SourcesDirectory)
+
 ...
