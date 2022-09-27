@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/ed555009/digiflow-payment)
+[![GitHub](https://img.shields.io/github/license/ed555009/digiflow-payment)](LICENSE)
 [![Nuget](https://img.shields.io/nuget/v/Digiflow.Payment)](https://www.nuget.org/packages/Digiflow.Payment)
 ![Build Status](https://dev.azure.com/edwang/github/_apis/build/status/digiflow-payment?branchName=master)
 ![Coverage](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=coverage&token=95805a959d9a4f677e86d05e661162260125d9f4)
