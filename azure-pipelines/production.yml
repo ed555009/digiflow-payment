@@ -45,6 +45,7 @@ stages:
   # Create tag
   - deployment: CreateTag
     displayName: Create tag
+    environment: Production
     dependsOn: PackAndUpload
     condition: succeeded()
     strategy:
