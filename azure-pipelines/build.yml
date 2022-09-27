@@ -44,7 +44,7 @@ stages:
       inputs:
         command: 'custom'
         custom: 'tool'
-        arguments: 'install --global dotnet-sonarscanner'
+        arguments: 'update --global dotnet-sonarscanner'
 
     - task: DotNetCoreCLI@2
       condition: eq(variables['Build.RunCodeScan'], 'true')
