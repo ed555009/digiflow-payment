@@ -38,15 +38,15 @@ dotnet add package Digiflow.Payment
 ```csharp
 using Digiflow.Payment.Extensions;
 
-ConfigureServices(IServiceCollection services, IConfiguration Configuration)
+ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
 	services
-		.AddDigiflowPaymentApiConfig(Configuration)
+		.AddDigiflowPaymentApiConfig(configuration)
 		.AddDigiflowPaymentServices();
 }
 ```
 
-`AddDigiflowPaymentServices()` injects as SINGLETON, for web application, you can inject as SCOPED use `AddScopedDigiflowPaymentServices()` instead.
+`AddDigiflowPaymentServices()` injects as SINGLETON, for web application, you can inject as SCOPED by using `AddScopedDigiflowPaymentServices()` instead.
 
 # Reference
 
