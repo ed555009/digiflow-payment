@@ -2,7 +2,7 @@
 
 stages:
 - stage: Production
-  dependsOn: Staging
+  dependsOn: Build
   condition: succeeded('Build')
   displayName: Production release
   variables:

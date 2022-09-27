@@ -102,8 +102,8 @@ stages:
   # Create tag
   - job: CreateTag
     displayName: Create tag
-    dependsOn: BuildDockerIamge
-    condition: eq(dependencies.BuildDockerIamge.result, 'Succeeded')
+    dependsOn: TestAndScan
+    condition: in(dependencies.TestAndScan.result, 'Succeeded', 'Skipped')
     steps:
 
     # checkout
