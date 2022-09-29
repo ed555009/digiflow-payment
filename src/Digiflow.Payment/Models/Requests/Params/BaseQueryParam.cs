@@ -2,7 +2,7 @@ using Digiflow.Payment.Interfaces;
 
 namespace Digiflow.Payment.Models.Requests.Params;
 
-public abstract class BaseQueryParam : IBaseQueryParam
+internal abstract class BaseQueryParam : IBaseQueryParam
 {
 	public string? version { get; set; }
 	public string? merchant_id { get; set; }
