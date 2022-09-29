@@ -14,7 +14,7 @@ public class PaymentApiConfig
 	/// <summary>
 	/// API版本
 	/// </summary>
-	public string? Version { get; set; } = "1.0";
+	public string Version { get; set; } = "1.0";
 
 	/// <summary>
 	/// 商店編號
