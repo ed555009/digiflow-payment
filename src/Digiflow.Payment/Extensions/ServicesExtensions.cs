@@ -47,7 +47,8 @@ public static class ServicesExtensions
 		configuration
 			.GetSection("Digiflow")
 			.GetSection("PaymentApi")
-			.Get<PaymentApiConfig>() ?? throw new ArgumentNullException("Could not find Digiflow Payment Api config");
+			.Get<PaymentApiConfig>()
+				?? throw new ArgumentNullException(nameof(configuration), "Could not find Digiflow Payment Api config");
 
 	static RefitSettings GetRefitSettings() =>
 		new()
