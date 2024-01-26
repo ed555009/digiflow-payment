@@ -7,7 +7,7 @@ namespace Digiflow.Payment.Interfaces;
 [Headers("User-Agent: Digiflow.PaymentApi",
 	"Accept: application/json",
 	"Content-Type: application/x-www-form-urlencoded;charset=utf-8")]
-internal interface IPaymentApi
+public interface IPaymentApi
 {
 	[Post("/order")]
 	Task<ApiResponse<CreateOrderModel>> CreateOrderAsync([Query] CreateOrderParams data);

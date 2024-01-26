@@ -1,13 +1,15 @@
-[![GitHub](https://img.shields.io/github/license/ed555009/digiflow-payment)](LICENSE)
-[![Nuget](https://img.shields.io/nuget/v/Digiflow.Payment)](https://www.nuget.org/packages/Digiflow.Payment)
-![Build Status](https://dev.azure.com/edwang/github/_apis/build/status/digiflow-payment?branchName=master)
-![Coverage](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=coverage&token=95805a959d9a4f677e86d05e661162260125d9f4)
-![Quality Gate Status](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=alert_status&token=95805a959d9a4f677e86d05e661162260125d9f4)
-![Reliability Rating](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=reliability_rating&token=95805a959d9a4f677e86d05e661162260125d9f4)
-![Security Rating](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=security_rating&token=95805a959d9a4f677e86d05e661162260125d9f4)
-![Vulnerabilities](http://direct.link2me.com.tw:9000/api/project_badges/measure?project=digiflow-payment&metric=vulnerabilities&token=95805a959d9a4f677e86d05e661162260125d9f4)
-
 # Digiflow.Payment
+
+[![GitHub](https://img.shields.io/github/license/ed555009/digiflow-payment)](LICENSE)
+![Build Status](https://dev.azure.com/edwang/github/_apis/build/status/digiflow-payment?branchName=master)
+[![Nuget](https://img.shields.io/nuget/v/Digiflow.Payment)](https://www.nuget.org/packages/Digiflow.Payment)
+
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=digiflow-payment&metric=coverage)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=digiflow-payment&metric=alert_status)
+![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=digiflow-payment&metric=reliability_rating)
+![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=digiflow-payment&metric=security_rating)
+![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=digiflow-payment&metric=vulnerabilities)
+
 
 ## Installation
 
@@ -33,20 +35,20 @@ dotnet add package Digiflow.Payment
 }
 ```
 
-### Add configs & services
+### Add services
 
 ```csharp
 using Digiflow.Payment.Extensions;
 
 ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
-	services
-		.AddDigiflowPaymentApiConfig(configuration)
-		.AddDigiflowPaymentServices();
+	// this injects as SINGLETON
+	services.AddDigiflowPaymentServices(configuration);
+
+	// you can also inject as SCOPED or TRANSIENT by specifying the ServiceLifetime
+	services.AddDigiflowPaymentServices(configuration, ServiceLifetime.Scoped);
 }
 ```
-
-`AddDigiflowPaymentServices()` injects as SINGLETON, for web application, you can inject as SCOPED by using `AddScopedDigiflowPaymentServices()` instead.
 
 # Reference
 

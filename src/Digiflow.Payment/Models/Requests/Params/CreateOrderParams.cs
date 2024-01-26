@@ -1,6 +1,6 @@
 namespace Digiflow.Payment.Models.Requests.Params;
 
-internal class CreateOrderParams : BaseQueryParam
+public class CreateOrderParams : BaseQueryParam
 {
 	public string? order_no { get; set; }
 	public string? currency { get; set; }

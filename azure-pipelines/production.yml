@@ -3,7 +3,7 @@
 stages:
 - stage: Production
   dependsOn: Build
-  condition: succeeded('Build')
+  condition: and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), succeeded('Build'))
   displayName: Production release
   variables:
   - group: DigiflowPayment
@@ -17,6 +17,9 @@ stages:
       runOnce:
         deploy:
           steps:
+
+          # checkout
+          - checkout: self
 
           # download .NET sdk
           - task: UseDotNet@2

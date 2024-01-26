@@ -1,9 +1,8 @@
 using System.Text.Json.Serialization;
-using Newtonsoft.Json.Converters;
 
 namespace Digiflow.Payment.Enums;
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum OrderStatus
 {
 	/// <summary>
