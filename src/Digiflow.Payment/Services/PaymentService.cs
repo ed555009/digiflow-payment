@@ -1,24 +1,20 @@
-using Digiflow.Payment.Configs;
 using Digiflow.Payment.Extensions;
 using Digiflow.Payment.Interfaces;
 using Digiflow.Payment.Models.Requests.Params;
 using Digiflow.Payment.Models.Responses;
-using Microsoft.Extensions.Logging;
 using Refit;
 
 namespace Digiflow.Payment.Services;
 
 public sealed class PaymentService : IPaymentService
 {
-	private readonly ILogger<PaymentService> _logger;
 	private readonly ISignService _signService;
 	private readonly IPaymentApi _paymentApi;
 
-	public PaymentService(ILogger<PaymentService> logger, PaymentApiConfig paymentApiConfig, ISignService signService)
+	public PaymentService(IPaymentApi paymentApi, ISignService signService)
 	{
-		_logger = logger;
+		_paymentApi = paymentApi;
 		_signService = signService;
-		_paymentApi = RestService.For<IPaymentApi>($"{paymentApiConfig.BaseUrl}/universal");
 	}
 
 	public async Task<ApiResponse<CancelOrderModel>> CancelOrderAsync(Models.Requests.QueryOrderModel data) =>

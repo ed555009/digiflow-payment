@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Digiflow.Payment.Models.Responses;
 
@@ -12,28 +12,28 @@ public class PaymentInfoModel
 	/// C:銀聯卡<br/>
 	/// 付款方式爲信用卡一般、信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("card_brand")]
+	[JsonPropertyName("card_brand")]
 	public string? CardBrand { get; set; }
 
 	/// <summary>
 	/// 信用卡號末四碼<br/>
 	/// 付款方式爲信用卡一般、信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("card_no")]
+	[JsonPropertyName("card_no")]
 	public string? CardNo { get; set; }
 
 	/// <summary>
 	/// 付款銀行代碼<br/>
 	/// 付款方式爲虛擬帳號、金融帳戶扣款時才出現
 	/// </summary>
-	[JsonProperty("bank")]
+	[JsonPropertyName("bank")]
 	public string? Bank { get; set; }
 
 	/// <summary>
 	/// 付款銀行帳號<br/>
 	/// 付款方式爲虛擬帳號、金融帳戶扣款時才出現
 	/// </summary>
-	[JsonProperty("account_no")]
+	[JsonPropertyName("account_no")]
 	public string? AccountNo { get; set; }
 
 	/// <summary>
@@ -44,14 +44,14 @@ public class PaymentInfoModel
 	/// O:OK<br/>
 	/// 付款方式爲超商繳款時才出現
 	/// </summary>
-	[JsonProperty("store")]
+	[JsonPropertyName("store")]
 	public string? Store { get; set; }
 
 	/// <summary>
 	/// 分期期數<br/>
 	/// 付款方式爲信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("installment")]
+	[JsonPropertyName("installment")]
 	public string? Installment { get; set; }
 
 	/// <summary>
@@ -59,7 +59,7 @@ public class PaymentInfoModel
 	/// 例:100 元將回傳 10000<br/>
 	/// 付款方式爲信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("first_amount")]
+	[JsonPropertyName("first_amount")]
 	public string? FirstAmount { get; set; }
 
 	/// <summary>
@@ -67,7 +67,7 @@ public class PaymentInfoModel
 	/// 例:100 元將回傳 10000<br/>
 	/// 付款方式爲信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("each_amount")]
+	[JsonPropertyName("each_amount")]
 	public string? EachAmount { get; set; }
 
 	/// <summary>
@@ -75,6 +75,6 @@ public class PaymentInfoModel
 	/// 例:100 元將回傳 10000<br/>
 	/// 付款方式爲信用卡分期時才出現
 	/// </summary>
-	[JsonProperty("installment_fee")]
+	[JsonPropertyName("installment_fee")]
 	public string? InstallmentFee { get; set; }
 }

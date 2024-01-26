@@ -1,13 +1,12 @@
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace Digiflow.Payment.Enums;
 
 /// <summary>
 /// 付款方式
 /// </summary>
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PaymentType
 {
 	/// <summary>

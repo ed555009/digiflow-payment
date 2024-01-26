@@ -34,7 +34,12 @@ public sealed class SignService : ISignService
 		param.merchant_id = _paymentApiConfig.MerchantId;
 		param.terminal_id = _paymentApiConfig.TerminalId;
 
-		return $"{param.ToOrderedValuesString()}&key={_paymentApiConfig.SignKey}";
+		var signString = $"{param.ToOrderedValuesString()}&key={_paymentApiConfig.SignKey}";
+
+		_logger.LogDebug("Param: {@Param}", param);
+		_logger.LogDebug("SignString: {SignString}", signString);
+
+		return signString;
 	}
 
 	void ValidateConfig()

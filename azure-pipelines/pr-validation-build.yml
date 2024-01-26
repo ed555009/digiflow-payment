@@ -19,7 +19,7 @@ stages:
         else
           echo "##vso[task.setvariable variable=HasTestProjects;isoutput=true]false"
         fi
-      name: printvar
+      name: var1
 
   # Pull request validation
   - job: BuildAndTest
@@ -27,7 +27,7 @@ stages:
     condition: succeeded()
     displayName: Build for PR validation
     variables:
-      hasTestProjects: $[ dependencies.Determine.outputs['printvar.HasTestProjects'] ]
+      hasTestProjects: $[ dependencies.Determine.outputs['var1.HasTestProjects'] ]
     steps:
 
     # download .NET sdk

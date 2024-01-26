@@ -6,11 +6,8 @@ pr:
 trigger:
 - master
 
-# use self-hosted agent
 pool:
-  name: Default
-  demands:
-  - agent.name -equals Agent1
+  vmImage: ubuntu-latest
 
 stages:
 - template: azure-pipelines/pr-validation-build.yml

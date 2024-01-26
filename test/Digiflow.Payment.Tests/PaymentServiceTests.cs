@@ -10,18 +10,16 @@ public class PaymentServiceTests : BaseServiceTests
 	{
 		_signService = new SignService(Mock.Of<ILogger<SignService>>(), PaymentApiConfig);
 		_paymentApiMock = new Mock<IPaymentApi>();
-		_paymentService = new PaymentService(
-			Mock.Of<ILogger<PaymentService>>(),
-			PaymentApiConfig,
-			_signService);
+		_paymentService = new PaymentService(_paymentApiMock.Object, _signService);
 	}
 
 	[Fact]
 	public async Task CancelOrderAsync_ShouldSucceed()
 	{
 		// Given
-		var response = CreateResponse<CancelOrderModel>(HttpStatusCode.OK);
-		_paymentApiMock.Setup(x => x.CancelOrderAsync(It.IsAny<QueryOrderParams>())).Returns(response);
+		_ = _paymentApiMock
+			.Setup(x => x.CancelOrderAsync(It.IsAny<QueryOrderParams>()))
+			.Returns(CreateResponse<CancelOrderModel>(HttpStatusCode.OK));
 
 		// When
 		var result = await _paymentService.CancelOrderAsync(new Models.Requests.QueryOrderModel());
@@ -34,8 +32,9 @@ public class PaymentServiceTests : BaseServiceTests
 	public async Task CaptureOrderAsync_ShouldSucceed()
 	{
 		// Given
-		var response = CreateResponse<CaptureOrderModel>(HttpStatusCode.OK);
-		_paymentApiMock.Setup(x => x.CaptureOrderAsync(It.IsAny<CaptureOrderParams>())).Returns(response);
+		_ = _paymentApiMock
+			.Setup(x => x.CaptureOrderAsync(It.IsAny<CaptureOrderParams>()))
+			.Returns(CreateResponse<CaptureOrderModel>(HttpStatusCode.OK));
 
 		// When
 		var result = await _paymentService.CaptureOrderAsync(new Models.Requests.CaptureOrderModel());
@@ -48,8 +47,9 @@ public class PaymentServiceTests : BaseServiceTests
 	public async Task CreateOrderAsync_ShouldSucceed()
 	{
 		// Given
-		var response = CreateResponse<CreateOrderModel>(HttpStatusCode.OK);
-		_paymentApiMock.Setup(x => x.CreateOrderAsync(It.IsAny<CreateOrderParams>())).Returns(response);
+		_ = _paymentApiMock
+			.Setup(x => x.CreateOrderAsync(It.IsAny<CreateOrderParams>()))
+			.Returns(CreateResponse<CreateOrderModel>(HttpStatusCode.OK));
 
 		// When
 		var result = await _paymentService.CreateOrderAsync(new Models.Requests.CreateOrderModel());
@@ -62,8 +62,9 @@ public class PaymentServiceTests : BaseServiceTests
 	public async Task QueryOrderAsync_ShouldSucceed()
 	{
 		// Given
-		var response = CreateResponse<QueryOrderModel>(HttpStatusCode.OK);
-		_paymentApiMock.Setup(x => x.QueryOrderAsync(It.IsAny<QueryOrderParams>())).Returns(response);
+		_ = _paymentApiMock
+			.Setup(x => x.QueryOrderAsync(It.IsAny<QueryOrderParams>()))
+			.Returns(CreateResponse<QueryOrderModel>(HttpStatusCode.OK));
 
 		// When
 		var result = await _paymentService.QueryOrderAsync(new Models.Requests.QueryOrderModel());
@@ -76,8 +77,9 @@ public class PaymentServiceTests : BaseServiceTests
 	public async Task RefundOrderAsync_ShouldSucceed()
 	{
 		// Given
-		var response = CreateResponse<RefundOrderModel>(HttpStatusCode.OK);
-		_paymentApiMock.Setup(x => x.RefundOrderAsync(It.IsAny<RefundOrderParams>())).Returns(response);
+		_ = _paymentApiMock
+			.Setup(x => x.RefundOrderAsync(It.IsAny<RefundOrderParams>()))
+			.Returns(CreateResponse<RefundOrderModel>(HttpStatusCode.OK));
 
 		// When
 		var result = await _paymentService.RefundOrderAsync(new Models.Requests.RefundOrderModel());
@@ -85,10 +87,4 @@ public class PaymentServiceTests : BaseServiceTests
 		// Then
 		Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 	}
-
-	static Task<ApiResponse<T>> CreateResponse<T>(HttpStatusCode statusCode) where T : IBaseResponseModel =>
-		Task.FromResult(new ApiResponse<T>(
-			new HttpResponseMessage(statusCode),
-			default,
-			new RefitSettings()));
 }

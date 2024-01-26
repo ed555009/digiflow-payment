@@ -1,13 +1,12 @@
 using System.ComponentModel;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace Digiflow.Payment.Enums;
 
 /// <summary>
 /// 交易幣別
 /// </summary>
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Currency
 {
 	/// <summary>

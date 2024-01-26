@@ -1,5 +1,5 @@
+using System.Text.Json.Serialization;
 using Digiflow.Payment.Interfaces;
-using Newtonsoft.Json;
 
 namespace Digiflow.Payment.Models.Responses;
 
@@ -9,12 +9,12 @@ public abstract class BaseResponseModel : IBaseResponseModel
 	/// 交易結果<br/>
 	/// 000000 表示交易成功，其它表示交易失敗
 	/// </summary>
-	[JsonProperty("return_code")]
+	[JsonPropertyName("return_code")]
 	public string? ReturnCode { get; set; }
 
 	/// <summary>
 	/// 交易結果說明
 	/// </summary>
-	[JsonProperty("return_msg")]
+	[JsonPropertyName("return_msg")]
 	public string? ReturnMessage { get; set; }
 }
