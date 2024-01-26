@@ -73,7 +73,7 @@ stages:
         arguments: '--configuration $(Build.BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
 
     # merge test reports, convert to Cobertura type
-    - task: reportgenerator@4
+    - task: reportgenerator@5
       condition: eq(variables['hasTestProjects'], 'true')
       displayName: Merge code coverage reports
       inputs:
