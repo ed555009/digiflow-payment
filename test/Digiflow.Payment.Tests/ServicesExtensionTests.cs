@@ -72,7 +72,7 @@ public class ServicesExtensionTests : BaseServiceTests
 		var configuration = builder.AddJsonStream(new MemoryStream(Encoding.UTF8.GetBytes(_nullSettings))).Build();
 
 		// When
-		var ex = Assert.Throws<NullReferenceException>(() =>
+		var ex = Assert.Throws<ArgumentNullException>(() =>
 			ServicesExtensions.AddDigiflowPaymentServices(services, configuration));
 
 		// Then

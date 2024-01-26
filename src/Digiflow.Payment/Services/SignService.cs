@@ -44,8 +44,8 @@ public sealed class SignService : ISignService
 
 	void ValidateConfig()
 	{
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.MerchantId, nameof(_paymentApiConfig.MerchantId));
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.TerminalId, nameof(_paymentApiConfig.TerminalId));
-		ArgumentNullException.ThrowIfNull(_paymentApiConfig.SignKey, nameof(_paymentApiConfig.SignKey));
+		ArgumentNullException.ThrowIfNull(_paymentApiConfig.MerchantId);
+		ArgumentNullException.ThrowIfNull(_paymentApiConfig.TerminalId);
+		ArgumentNullException.ThrowIfNull(_paymentApiConfig.SignKey);
 	}
 }
