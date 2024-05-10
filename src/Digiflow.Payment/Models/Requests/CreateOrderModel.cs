@@ -31,7 +31,7 @@ public class CreateOrderModel : BaseRequestModel
 	/// <summary>
 	/// 付款期限
 	/// </summary>
-	public string ExpiryTime { get; set; } = $"{DateTime.UtcNow.AddHours(8).AddDays(1):yyyyMMddHHmmss}";
+	public string ExpiryTime { get; set; } = $"{DateTimeOffset.UtcNow.AddDays(1).ToOffset(new TimeSpan(8, 0, 0)):yyyyMMddHHmmss}";
 
 	/// <summary>
 	/// 付款方式
