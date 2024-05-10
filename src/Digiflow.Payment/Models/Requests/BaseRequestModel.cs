@@ -28,6 +28,5 @@ public abstract class BaseRequestModel : IBaseRequestModel
 	/// 時間戳，自 1970/01/01 至當前時間的毫秒數，同 Java 的 System.currentTimeMillis()<br/>
 	/// 與數位鎏系統時鐘差異超過 180 秒的交易將會被拒絕
 	/// </summary>
-	public string Timestamp { get; set; } =
-		((long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds).ToString();
+	public string Timestamp { get; set; } = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString();
 }
